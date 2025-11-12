@@ -1,5 +1,5 @@
 # Deploying dlt Pipelines with Orchestrators
-## Orchestrating
+## Orchestration
 ### Why orchestrators
 - dlt and features
 - ETL scripts to move data
@@ -32,3 +32,25 @@ For a pipeline to be ready for production, an orchestrator is required that circ
 - __schedulers__ ensure scripts are run without human intervention
 - __centalised logging__ keeps stakeholders informed on pipeline runs
 - __shared workflows__ allows engineers to work in the same codebase and environment
+
+### Available orchestrators
+> Below is a short list of some of the most commonly used orchestrators in use today.
+> They generally provide the same set of orchestration features, but differ in how they are configured.
+
+#### Apache Airflow
+The industry-standard orchestrator used by teams worldwide, offering flexibility, reliability, and an extensive library of operators.
+
+#### Dagster
+A data-first orchestrator that emphasizes lineage, observability, and data governance, making it ideal for complex data ecosystems.
+
+#### Prefect
+A Python-native orchestration tool that blends seamlessly into code-driven workflows, prioritizing simplicity and developer productivity.
+
+#### Modal
+A serverless orchestrator that removes infrastructure headaches by automatically scaling and managing your workloads in the cloud.
+
+#### Kestra
+A YAML-driven orchestration platform combining versionable configuration, flexible execution backends, and intuitive visualization tools.
+
+#### Orchestra
+A modern, integration-friendly orchestrator focused on speed, observability, and easy setup for the modern data stack.
