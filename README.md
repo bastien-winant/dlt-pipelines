@@ -54,3 +54,13 @@ A YAML-driven orchestration platform combining versionable configuration, flexib
 
 #### Orchestra
 A modern, integration-friendly orchestrator focused on speed, observability, and easy setup for the modern data stack.
+
+## dlt Features
+### Terminology
+#### Cursor
+__Cursor__ is a field in the data that serves as a virtual bookmark for the pipeline.
+It keeps track of the last batch of data that has been processed.
+
+Having a such a marker enables two fundamental pipeline functionalities:
+- __incremental loading:__ only process new or changed data since the last run as specified by the Cursor
+- __backfilling:__ reloading data for a past time window delimited by the Cursor to fill gaps or repair history
