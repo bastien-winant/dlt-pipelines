@@ -58,9 +58,10 @@ A modern, integration-friendly orchestrator focused on speed, observability, and
 ## dlt Features
 ### Terminology
 #### Cursor
-__Cursor__ is a field in the data that serves as a virtual bookmark for the pipeline.
-It keeps track of the last batch of data that has been processed.
+__Cursor__ is a field in the data - usually a date or ID columns - that serves as a virtual bookmark for the pipeline.
 
-Having a such a marker enables two fundamental pipeline functionalities:
-- __incremental loading:__ only process new or changed data since the last run as specified by the Cursor
-- __backfilling:__ reloading data for a past time window delimited by the Cursor to fill gaps or repair history
+By maintaining a cursor, the pipeline can ingest only new or changed records rather than reprocessing the entire
+dataset at every run. This is commonly known as _incremental loading_ and leads to significant efficiency gains.
+
+Secondly, the cursor provides a mechanism for reloading data for a past window to fill gaps or repair history.
+We use the Cursor column to delimit the beginning and end of the window to rerun.
