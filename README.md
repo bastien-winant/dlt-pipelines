@@ -29,9 +29,10 @@ In and of itself, a local script does not solve the problem:
 dlt handles some of the above issues through features such as incremental loading and backfilling.
 For a pipeline to be fully ready for production, an orchestrator is required that circumvents the issues with local scripts.
 - __parallelisation__ provides virtually unlimited compute resources
-- __schedulers__ ensure scripts are run without human intervention
-- __centalised logging__ keeps stakeholders informed on pipeline runs
+- __schedulers__ ensure scripts are run consistently and without human intervention
+- __centralised logging__ keeps stakeholders informed on pipeline runs
 - __shared workflows__ allows engineers to work in the same codebase and environment
+- __cloud deployment__ gives access to scalable compute and storage
 
 ### Available orchestrators
 > Below is a short list of some of the most commonly used orchestrators in use today.
