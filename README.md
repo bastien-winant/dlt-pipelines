@@ -59,10 +59,38 @@ A modern, integration-friendly orchestrator focused on speed, observability, and
 ## dlt Features
 ### Terminology
 #### Cursor
-__Cursor__ is a field in the data - usually a date or ID columns - that serves as a virtual bookmark for the pipeline.
+__Cursor__ is a field in the data - usually a date or ID column - that serves as a virtual bookmark for the pipeline.
 
 By maintaining a cursor, the pipeline can ingest only new or changed records rather than reprocessing the entire
-dataset at every run. This is commonly known as _incremental loading_ and leads to significant efficiency gains.
+dataset at every run. This is commonly known as _incremental loading_ and leads to significant efficiency gains in
+ongoing pipelines.
 
 Secondly, the cursor provides a mechanism for reloading data for a past window to fill gaps or repair history.
-We use the Cursor column to delimit the beginning and end of the window to rerun.
+This is commonly known as _data backfilling_, which often becomes necessary when changes in the data source cause
+pipeline runs to fail.
+
+## Case Study
+### Description
+We will be creating a pipeline that collects data from Github and stores it in BigQuery.
+
+The source data is extracted from 5 different Github API endpoints:
+1. repos
+2. contributors
+3. issues
+4. forks
+5. releases
+
+### Problem statement
+dlt pipeline criteria:
+- collects data from 5 endpoints in Github
+- stores data in BigQuery
+- incorporates incremental loading in `issues` endpoint
+- allows backfilling implementation in `forks` endpoint
+- logs the pipeline runs
+
+### Techniques
+#### Incremental loading
+We will be making use of incremental loading for the `issues` data in our pipelines.
+That is, the pipeline will only extract and load data that has not been processed before.
+This will reduce the amount of time and number of API calls.
+
