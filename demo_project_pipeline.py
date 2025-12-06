@@ -41,6 +41,26 @@ config: RESTAPIConfig = {
 					"initial_value": "2025-07-01T00:00:00Z"
 				}
 			}
+		},
+		{
+			"name": "forks",
+			"endpoint": {
+				"path": "repos/dlt-hub/dlt/forks",
+				"params": {
+					"sort": "oldest",
+					"per_page": 100
+				},
+				"incremental": {
+					"cursor_path": "created_at",
+					"initial_value": "2025-07-01T00:00:00Z"
+				}
+			}
+		},
+		{
+			"name": "releases",
+			"endpoint": {
+				"path": "repos/dlt-hub/dlt/releases",
+			}
 		}
 	]
 }
