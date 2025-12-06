@@ -94,3 +94,8 @@ We will be making use of incremental loading for the `issues` data in our pipeli
 That is, the pipeline will only extract and load data that has not been processed before.
 This will reduce the amount of time and number of API calls.
 
+We use the `updated_at` as the Cursor field for determining the latest slice of data that was processed,
+and whether new data is available.
+
+#### Backfilling
+Backfilling is usually a one-off job made necessary by a failed pipeline run or a gap in the source data.
