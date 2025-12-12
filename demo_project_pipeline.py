@@ -67,15 +67,15 @@ config: RESTAPIConfig = {
 
 github_source = rest_api_source(config)
 
-# apply backfilling only to forks
-github_source.forks.apply_hints(
-	incremental=dlt.sources.incremental(
-		cursor_path="created_at",
-		initial_value="2025-07-01T00:00:00Z",
-		end_value="2025-08-01T00:00:00Z",
-		row_order="asc"
-	)
-)
+# # apply backfilling only to forks
+# github_source.forks.apply_hints(
+# 	incremental=dlt.sources.incremental(
+# 		cursor_path="created_at",
+# 		initial_value="2025-07-01T00:00:00Z",
+# 		end_value="2025-08-01T00:00:00Z",
+# 		row_order="asc"
+# 	)
+# )
 
 pipeline = dlt.pipeline(
 	pipeline_name="github_repos_issues",
