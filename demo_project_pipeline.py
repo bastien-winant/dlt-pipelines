@@ -23,7 +23,7 @@ config: RESTAPIConfig = {
 		{
 			"name": "contributors",
 			"endpoint": {
-				"path": "orgs/dlt-hub/dlt/contributors",
+				"path": "repos/dlt-hub/dlt/contributors",
 			}
 		},
 		{
@@ -60,7 +60,7 @@ config: RESTAPIConfig = {
 		{
 			"name": "releases",
 			"endpoint": {
-				"path": "repos/dlt-hub/dlt/releases"
+				"path": "repos/dlt-hub/dlt/releases",
 			},
 		},
 	]
