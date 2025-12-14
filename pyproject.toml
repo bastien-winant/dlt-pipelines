@@ -6,5 +6,5 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "apache-airflow[async,google,postgres]==2.11.0",
-    "dlt[bigquery]>=1.20.0",
+    "dlt[bigquery,cli]>=1.20.0",
 ]
