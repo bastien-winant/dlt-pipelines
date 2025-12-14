@@ -220,4 +220,6 @@ __marimo__/
 *.egg-info
 
 
-.dlt/secrets.toml
+secrets.toml
+*.wal
+*.duckdb
