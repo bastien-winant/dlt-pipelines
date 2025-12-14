@@ -29,6 +29,7 @@ default_task_args = {
 
 
 @dag(
+    dag_id="github_dag",
     schedule_interval='@daily',
     start_date=pendulum.datetime(2023, 7, 1),
     catchup=False,
@@ -40,16 +41,16 @@ def load_data():
     tasks = PipelineTasksGroup("pipeline_decomposed", use_data_folder=False, wipe_local_data=True)
 
     # import your source from pipeline script
-    from pipeline_or_source_script import source
+    from dags.dlt_pipeline import github_source
 
     # modify the pipeline parameters 
     pipeline = dlt.pipeline(pipeline_name='pipeline_name',
                      dataset_name='dataset_name',
-                     destination='duckdb',
+                     destination='bigquery',
                      full_refresh=False # must be false if we decompose
                      )
     # create the source, the "serialize" decompose option will converts dlt resources into Airflow tasks. use "none" to disable it
-    tasks.add_run(pipeline, source(), decompose="serialize", trigger_rule="all_done", retries=0, provide_context=True)
+    tasks.add_run(pipeline, github_source, decompose="serialize", trigger_rule="all_done", retries=0, provide_context=True)
 
 
 load_data()
