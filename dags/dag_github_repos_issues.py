@@ -41,7 +41,7 @@ def load_data():
     tasks = PipelineTasksGroup("pipeline_decomposed", use_data_folder=False, wipe_local_data=True)
 
     # import your source from pipeline script
-    from dags.dlt_pipeline import github_source
+    from dlt_pipeline import github_source
 
     # modify the pipeline parameters 
     pipeline = dlt.pipeline(pipeline_name='pipeline_name',
