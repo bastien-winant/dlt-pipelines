@@ -1,0 +1,2 @@
+# set the airflow home
+export AIRFLOW_HOME="/Users/bastienwinant/Desktop/projects/dlt-pipelines/airflow"
