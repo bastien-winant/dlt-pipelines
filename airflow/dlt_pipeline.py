@@ -1,12 +1,11 @@
 import dlt
-from airflow.models import Variable
 from dlt.sources.rest_api import RESTAPIConfig, rest_api_source
 
 config: RESTAPIConfig = {
 	"client": {
 		"base_url": "https://api.github.com",
 		"auth": {
-			"token": Variable.get("github_access_token"),
+			"token": dlt.secrets["sources.access_token"],
 		},
 		"headers": {
 			"Accept": "application/vnd.github+json",
@@ -25,7 +24,7 @@ config: RESTAPIConfig = {
 			"name": "contributors",
 			"endpoint": {
 				"path": "repos/dlt-hub/dlt/contributors",
-			}
+			},
 		},
 		{
 			"name": "issues",
@@ -61,21 +60,20 @@ config: RESTAPIConfig = {
 		{
 			"name": "releases",
 			"endpoint": {
-				"path": "repos/dlt-hub/dlt/releases",
+				"path": "repos/dlt-hub/dlt/releases"
 			},
-		},
+		}
 	]
 }
 
 github_source = rest_api_source(config)
 
-if __name__=="__main__":
-	pipeline = dlt.pipeline(
-		pipeline_name="github_repos_issues",
-		destination="bigquery",
-		dataset_name="github_data",
-		progress="log" # Add logging as per rule recommendation
-	)
+pipeline = dlt.pipeline(
+	pipeline_name="github_repos_issues",
+	destination="bigquery",
+	dataset_name="github_data",
+	progress="log"
+)
 
-	load_info = pipeline.run(github_source)
-	print(load_info)
+load_info = pipeline.run(github_source)
+print(load_info)
