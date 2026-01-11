@@ -18,13 +18,13 @@ config: RESTAPIConfig = {
 			"name": "repos",
 			"endpoint": {
 				"path": "orgs/dlt-hub/repos"
-			},
+			}
 		},
 		{
 			"name": "contributors",
 			"endpoint": {
-				"path": "repos/dlt-hub/dlt/contributors",
-			},
+				"path": "repos/dlt-hub/dlt/contributors"
+			}
 		},
 		{
 			"name": "issues",
@@ -40,7 +40,7 @@ config: RESTAPIConfig = {
 					"cursor_path": "updated_at",
 					"initial_value": "2025-07-01T00:00:00Z"
 				}
-			},
+			}
 		},
 		{
 			"name": "forks",
@@ -61,19 +61,10 @@ config: RESTAPIConfig = {
 			"name": "releases",
 			"endpoint": {
 				"path": "repos/dlt-hub/dlt/releases"
-			},
+			}
 		}
 	]
 }
 
+
 github_source = rest_api_source(config)
-
-pipeline = dlt.pipeline(
-	pipeline_name="github_repos_issues",
-	destination="bigquery",
-	dataset_name="github_data",
-	progress="log"
-)
-
-load_info = pipeline.run(github_source)
-print(load_info)

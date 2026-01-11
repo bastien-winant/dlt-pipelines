@@ -2,9 +2,7 @@
 name = "dlt-pipelines"
 version = "0.1.0"
 description = "Add your description here"
-readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "apache-airflow[async,google,postgres]==2.11.0",
     "dlt[bigquery,cli]>=1.20.0",
 ]

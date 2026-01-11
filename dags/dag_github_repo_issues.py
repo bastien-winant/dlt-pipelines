@@ -5,7 +5,6 @@ import dlt
 from dlt.common import pendulum
 from dlt.helpers.airflow_helper import PipelineTasksGroup
 
-
 # modify the default task arguments - all the tasks created for dlt pipeline will inherit it
 # - set e-mail notifications
 # - we set retries to 0 and recommend to use `PipelineTasksGroup` retry policies with tenacity library, you can also retry just extract and load steps
@@ -44,11 +43,12 @@ def load_data():
     from dlt_pipeline import github_source
 
     # modify the pipeline parameters 
-    pipeline = dlt.pipeline(pipeline_name='pipeline_name',
-                     dataset_name='dataset_name',
-                     destination='bigquery',
-                     full_refresh=False # must be false if we decompose
-                     )
+    pipeline = dlt.pipeline(
+        pipeline_name='pipeline_name',
+        dataset_name='dataset_name',
+        destination='bigquery',
+        full_refresh=False # must be false if we decompose
+    )
     # create the source, the "serialize" decompose option will converts dlt resources into Airflow tasks. use "none" to disable it
     tasks.add_run(pipeline, github_source, decompose="serialize", trigger_rule="all_done", retries=0, provide_context=True)
 
