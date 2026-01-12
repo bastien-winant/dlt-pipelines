@@ -213,7 +213,7 @@ initdb.py
 secrets.py
 
 # Airflow sqlite databases
-airflow.db
+airflow.db*
 
 # Airflow temporary artifacts
 airflow-core/src/airflow/git_version
