@@ -30,7 +30,7 @@ default_task_args = {
 
 
 @dag(
-    dag_id="github_dag",
+    dag_id="github_dag_parallel",
     schedule_interval='@daily',
     start_date=pendulum.datetime(2023, 7, 1),
     catchup=False,
@@ -49,13 +49,20 @@ def load_data():
 
     # modify the pipeline parameters 
     pipeline = dlt.pipeline(
-        pipeline_name='dlt_github_issues',
-        dataset_name='dlt_github_data',
+        pipeline_name='dlt_github_issues_parallel',
+        dataset_name='dlt_github_data_parallel',
         destination='bigquery',
         full_refresh=False # must be false if we decompose
     )
     # create the source, the "serialize" decompose option will converts dlt resources into Airflow tasks. use "none" to disable it
-    tasks.add_run(pipeline, github_source, decompose="serialize", trigger_rule="all_done", retries=0, provide_context=True)
+    tasks.add_run(
+        pipeline,
+        github_source,
+        decompose="parallel-isolated",
+        trigger_rule="all_done",
+        retries=0,
+        provide_context=True
+    )
 
 
 load_data()
