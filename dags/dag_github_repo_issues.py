@@ -4,6 +4,8 @@ from airflow.decorators import dag
 import dlt
 from dlt.common import pendulum
 from dlt.helpers.airflow_helper import PipelineTasksGroup
+import os
+from airflow.models import Variable
 
 # modify the default task arguments - all the tasks created for dlt pipeline will inherit it
 # - set e-mail notifications
@@ -36,6 +38,9 @@ default_task_args = {
     default_args=default_task_args
 )
 def load_data():
+    # story bigquery creds in environment
+    os.environ["DESTINATION__CREDENTIALS"] = Variable.get('bigquery_credentials')
+
     # set `use_data_folder` to True to store temporary data on the `data` bucket. Use only when it does not fit on the local storage
     tasks = PipelineTasksGroup("pipeline_decomposed", use_data_folder=False, wipe_local_data=True)
 
