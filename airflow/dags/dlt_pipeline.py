@@ -1,4 +1,3 @@
-import dlt
 from dlt.sources.rest_api import RESTAPIConfig, rest_api_source
 from airflow.models import Variable
 
