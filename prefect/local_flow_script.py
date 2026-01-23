@@ -23,4 +23,4 @@ def main():
 	return github_workflow
 
 if __name__=="__main__":
-	main()
+	main.serve(name="prefect_deployment")
