@@ -1,5 +1,0 @@
-# set the airflow_home variable (folder where dags/ is located)
-export AIRFLOW_HOME=$(pwd)
-
-# start the scheduler, executor and web server at once
-airflow standalone
