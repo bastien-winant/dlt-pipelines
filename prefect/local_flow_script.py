@@ -23,4 +23,7 @@ def main():
 	return github_workflow
 
 if __name__=="__main__":
-	main.serve(name="prefect_deployment")
+	main.serve(
+		name="prefect_deployment",
+		cron="0 8 * * *"
+	)
