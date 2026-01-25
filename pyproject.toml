@@ -5,4 +5,5 @@ description = "Add your description here"
 requires-python = ">=3.12"
 dependencies = [
     "dlt[bigquery,cli]>=1.21.0",
+    "prefect>=3.6.13",
 ]
