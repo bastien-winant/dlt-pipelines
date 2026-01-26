@@ -1,3 +1,10 @@
+# use prefect cloud profile
+prefect profile use 'prefect-cloud'
+
+# login to prefect account
+prefect-cloud login
+
+# deploy flow
 prefect-cloud deploy prefect/remote_flow_script.py:main \
 --from bastien-winant/dlt-pipelines \
 --name github_to_bigquery \
