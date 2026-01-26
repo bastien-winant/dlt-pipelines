@@ -1,0 +1,6 @@
+prefect-cloud deploy prefect/remote_flow_script.py:main \
+--from bastien-winant/dlt-pipelines \
+--name github_to_bigquery \
+--with "dlt[bigquery]" \
+--with "prefect-github" \
+--with "prefect-gcp"
